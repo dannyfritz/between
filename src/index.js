@@ -1,3 +1,4 @@
 import Game from "./Game"
 
-new Game()
+const game = new Game()
+game.run()

@@ -6,7 +6,6 @@ export default class Game {
   {
     this.timer = new Timer()
     this.canvas = new Canvas()
-    this.run()
   }
   run ()
   {
