@@ -1,5 +1,6 @@
 import SAT from "sat"
 import Keyboard from "./Keyboard"
+import { assert } from "./debug"
 
 export default class Player {
   constructor (x, y, radius)
@@ -15,7 +16,6 @@ export default class Player {
     this.y = y
     this.speed = 100
     this.radius = radius
-    this.shape = new SAT.Circle(new SAT.Vector(x, y), radius)
   }
   update (dt)
   {
@@ -35,13 +35,6 @@ export default class Player {
     {
       this.x += dt * this.speed
     }
-    this.updateShape()
-  }
-  updateShape ()
-  {
-    this.shape.pos.y = this.y
-    this.shape.pos.x = this.x
-    this.shape.radius = this.radius
   }
   draw (canvas)
   {
@@ -49,5 +42,16 @@ export default class Player {
       this.x, this.y,
       this.radius
     )
+  }
+  insideOf (other)
+  {
+    assert(other.toShape)
+    const response = new SAT.Response()
+    SAT.testCirclePolygon(this.toShape(), other.toShape(), response)
+    return response.aInB
+  }
+  toShape ()
+  {
+    return new SAT.Circle(new SAT.Vector(this.x, this.y), this.radius)
   }
 }
