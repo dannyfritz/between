@@ -43,7 +43,7 @@ export default class Player {
       this.radius
     )
   }
-  insideOf (other)
+  isInsideOf (other)
   {
     assert(other.toShape)
     const response = new SAT.Response()

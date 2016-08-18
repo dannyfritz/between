@@ -1,30 +1,47 @@
 import Player from "./Player"
 import Tunnel from "./Tunnel"
+import _ from "lodash"
+import { assert } from "./debug"
 
 export default class Game {
   constructor ()
   {
-    this.player = new Player(0, 0, 1)
-    this.tunnel = new Tunnel(
-      {x: 0, y: 0},
-      {x: 10, y: 0},
-      {x: 8, y: 12},
-      {x: 2, y: 15}
-    )
+    this.player = new Player(1, 50, 1)
+    this.tunnels = [new Tunnel(
+      {x: -5, y: 40},
+      {x: -5, y: 60}
+    )]
   }
   update (dt)
   {
     this.player.update(dt)
-    if (!this.player.insideOf(this.tunnel))
+    while (this.isNeedingMoreTunnels())
     {
-      console.log("you lose")
+      const lastTunnel = _.last(this.tunnels)
+      assert(lastTunnel)
+      this.tunnels.push(
+        new Tunnel(lastTunnel.getTopRight(), lastTunnel.getBottomRight())
+      )
     }
-    this.tunnel.update(dt)
+    this.tunnels.forEach((tunnel) => tunnel.update(dt))
+    if (this.isGameLost())
+    {
+      console.log("You lost")
+    }
+    _.remove(this.tunnels, (tunnel) => tunnel.getRightSide() < 0)
+  }
+  isGameLost ()
+  {
+    return !this.tunnels.some((tunnel) => this.player.isInsideOf(tunnel))
+  }
+  isNeedingMoreTunnels ()
+  {
+    return !_.last(this.tunnels) || _.last(this.tunnels).getRightSide() <= 100
   }
   draw (canvas)
   {
     canvas.clear()
     this.player.draw(canvas)
-    this.tunnel.draw(canvas)
+    this.tunnels.forEach((tunnel) => tunnel.draw(canvas))
   }
 }
