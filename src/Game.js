@@ -4,12 +4,12 @@ import Tunnel from "./Tunnel"
 export default class Game {
   constructor ()
   {
-    this.player = new Player(0, 0, 10)
+    this.player = new Player(0, 0, 1)
     this.tunnel = new Tunnel(
       {x: 0, y: 0},
-      {x: 100, y: 0},
-      {x: 80, y: 120},
-      {x: 20, y: 150}
+      {x: 10, y: 0},
+      {x: 8, y: 12},
+      {x: 2, y: 15}
     )
   }
   update (dt)

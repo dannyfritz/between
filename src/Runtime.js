@@ -19,6 +19,7 @@ export default class Runtime {
     this.timer.update()
     this.moody.execute("update", this.timer.dt)
     this.moody.execute("draw", this.canvas)
+    this.canvas.letterBox()
     requestAnimationFrame(() => this.run())
   }
   push (newState)

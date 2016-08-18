@@ -14,7 +14,7 @@ export default class Player {
     }
     this.x = x
     this.y = y
-    this.speed = 100
+    this.speed = 10
     this.radius = radius
   }
   update (dt)
@@ -39,7 +39,7 @@ export default class Player {
   draw (canvas)
   {
     canvas.circle(
-      this.x, this.y,
+      {x: this.x, y: this.y},
       this.radius
     )
   }

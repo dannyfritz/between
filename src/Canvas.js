@@ -1,7 +1,7 @@
 import { assert } from "./debug"
 
 export default class Canvas {
-  constructor (aspectRatio = 16/9)
+  constructor (aspectRatio = 1)
   {
     this.canvas = document.createElement("canvas")
     this.context = this.canvas.getContext("2d")
@@ -14,45 +14,113 @@ export default class Canvas {
   }
   fitWindow ()
   {
-    this.canvas.width = window.innerWidth
-    this.canvas.height = window.innerHeight
     this.canvas.style.display = "block"
-    document.addEventListener("resize", () =>
+    this.resizeCanvas()
+    window.addEventListener("resize", () =>
     {
-      this.fitWindow()
+      this.resizeCanvas()
     })
   }
-  longestEdge ()
+  resizeCanvas ()
+  {
+    this.canvas.width = window.innerWidth
+    this.canvas.height = window.innerHeight
+  }
+  getLongestEdge ()
   {
     const width = this.canvas.width
     const height = this.canvas.height
     return width > height ? width : height
   }
-  shortestEdge ()
+  getShortestEdge ()
   {
     const width = this.canvas.width
     const height = this.canvas.height
     return width < height ? width : height
   }
-  worldToScreen (x, y)
+  worldVToScreen (v)
   {
-
+    return {
+      x: this.worldXToScreen(v.x),
+      y: this.worldYToScreen(v.y),
+    }
+  }
+  worldXToScreen (x)
+  {
+    let offset = 0
+    if (this.getShortestEdge() === this.canvas.height)
+    {
+      offset = (this.getLongestEdge() - this.getShortestEdge()) / 2
+    }
+    return x * this.getShortestEdge() / 100 + offset
+  }
+  worldYToScreen (y)
+  {
+    let offset = 0
+    if (this.getShortestEdge() === this.canvas.width)
+    {
+      offset = (this.getLongestEdge() - this.getShortestEdge()) / 2
+    }
+    return y * this.getShortestEdge() / 100 + offset
+  }
+  worldScalerToScreen (l)
+  {
+    return l * this.getShortestEdge() / 100
+  }
+  letterBox ()
+  {
+    this.push()
+    const edge = this.getShortestEdge()
+    const spaceRemaining = this.getLongestEdge() - this.getShortestEdge()
+    const letterBoxSize = spaceRemaining / 2
+    this.context.fillStyle = "hsl(0, 0%, 0%)"
+    if (edge === this.canvas.width)
+    {
+      this.context.fillRect(0, 0, this.canvas.width, letterBoxSize)
+      this.context.fillRect(
+        0, this.canvas.height - letterBoxSize,
+        this.canvas.width, letterBoxSize
+      )
+    }
+    else
+    {
+      this.context.fillRect(0, 0, letterBoxSize, this.canvas.height)
+      this.context.fillRect(
+        this.canvas.width - letterBoxSize, 0,
+        this.canvas.width, this.canvas.height
+      )
+    }
+    this.pop()
   }
   clear ()
   {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
   }
-  circle (x, y, radius)
+  circle (worldV, worldRadius)
   {
+    const screenV = this.worldVToScreen(worldV)
+    const screenR = this.worldScalerToScreen(worldRadius)
     this.context.beginPath()
-    this.context.arc(x, y, radius, 0, 360)
+    this.context.arc(screenV.x, screenV.y, screenR, 0, 360)
     this.context.stroke()
   }
   polygon (vertices)
   {
     this.context.beginPath()
-    vertices.forEach((v) => this.context.lineTo(v.x, v.y))
+    vertices.forEach((worldV) =>
+    {
+      const screenV = this.worldVToScreen(worldV)
+      this.context.lineTo(screenV.x, screenV.y)
+    })
     this.context.closePath()
     this.context.stroke()
+  }
+  push ()
+  {
+    this.context.save()
+  }
+  pop ()
+  {
+    this.context.restore()
   }
 }

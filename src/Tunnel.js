@@ -4,7 +4,7 @@ export default class Tunnel {
   constructor (v1, v2, v3, v4)
   {
     this.vertices = [v1, v2, v3, v4]
-    this.speed = 50
+    this.speed = 5
   }
   update (dt)
   {
@@ -17,7 +17,7 @@ export default class Tunnel {
   toShape ()
   {
     return new SAT.Polygon(
-      new SAT.Vector(),
+      new SAT.Vector(0, 0),
       this.vertices.map((v) => new SAT.Vector(v.x, v.y))
     )
   }
