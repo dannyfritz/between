@@ -1,3 +1,3 @@
-console.log("hi")
+import Game from "./Game"
 
-export default 1
+new Game()
