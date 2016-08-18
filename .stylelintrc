@@ -1,0 +1,22 @@
+{
+  "extends": "stylelint-config-standard",
+	"rules": {
+		"color-no-hex": true,
+		"color-named": "never",
+		"indentation": "tab",
+		"string-quotes": "double",
+		"value-no-vendor-prefix": true,
+		"property-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": true,
+		"value-keyword-case": "lower",
+		"declaration-no-important": true,
+		"declaration-block-no-duplicate-properties": true,
+		"declaration-block-no-ignored-properties": true,
+		"declaration-block-no-shorthand-property-overrides": true,
+    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-element-colon-notation": "double",
+    "selector-pseudo-element-no-unknown": true,
+    "no-descending-specificity": true,
+    "no-duplicate-selectors": true
+	}
+}
