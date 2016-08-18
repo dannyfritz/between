@@ -1,25 +1,17 @@
-import Canvas from "./Canvas"
-import Timer from "./Timer"
+import Player from "./Player"
 
 export default class Game {
   constructor ()
   {
-    this.timer = new Timer()
-    this.canvas = new Canvas()
-  }
-  run ()
-  {
-    this.timer.update()
-    this.update(this.timer.dt)
-    this.draw()
-    requestAnimationFrame(() => this.run())
+    this.player = new Player(0, 0, 10)
   }
   update (dt)
   {
-    console.log(dt)
+    this.player.update(dt)
   }
-  draw ()
+  draw (canvas)
   {
-    // console.log("draw")
+    canvas.clear()
+    this.player.draw(canvas)
   }
 }

@@ -17,6 +17,7 @@
     "comma-dangle": [2, "always-multiline"],
     "no-console": [1],
     "no-unexpected-multiline": [2],
+    "no-unused-vars": [1],
     "valid-jsdoc": [2],
 		"indent": ["error", 2],
 

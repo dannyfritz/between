@@ -10,8 +10,8 @@ export default class Timer {
   update ()
   {
     const now = new Date()
-    this.dt = now.getTime() - this.lastDate.getTime() || 1
-    assert(this.dt > 0)
+    this.dt = (now.getTime() - this.lastDate.getTime()) / 1000 || .001
+    assert(this.dt > 0, `dt was ${this.dt} and cannot be <= 0`)
     this.lastDate = now
   }
 }
