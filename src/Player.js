@@ -50,6 +50,16 @@ export default class Player {
     SAT.testCirclePolygon(this.toShape(), other.toShape(), response)
     return response.aInB
   }
+  overlap (other)
+  {
+    assert(other.toShape)
+    const response = new SAT.Response()
+    if (SAT.testCirclePolygon(this.toShape(), other.toShape(), response))
+    {
+      return response.overlap
+    }
+    return 0
+  }
   toShape ()
   {
     return new SAT.Circle(new SAT.Vector(this.x, this.y), this.radius)

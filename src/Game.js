@@ -32,7 +32,15 @@ export default class Game {
   }
   isGameLost ()
   {
-    return !this.tunnels.some((tunnel) => this.player.isInsideOf(tunnel))
+    let lost = this.tunnels.every((tunnel) => !this.player.isInsideOf(tunnel))
+    if (!lost)
+    {
+      return false
+    }
+    lost = this.tunnels.reduce(
+      (sum, tunnel) => sum += this.player.overlap(tunnel)
+    , 0)
+    return lost < this.player.radius * 2
   }
   isNeedingMoreTunnels ()
   {
