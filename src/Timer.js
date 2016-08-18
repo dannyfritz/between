@@ -1,3 +1,5 @@
+import { assert } from "./debug"
+
 export default class Timer {
   constructor ()
   {
@@ -5,10 +7,11 @@ export default class Timer {
     this.lastDate = this.startDate
     this.dt = 0
   }
-  step ()
+  update ()
   {
     const now = new Date()
-    this.dt = now.getTime() - this.lastDate.getTime()
+    this.dt = now.getTime() - this.lastDate.getTime() || 1
+    assert(this.dt > 0)
     this.lastDate = now
   }
 }

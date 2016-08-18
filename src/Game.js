@@ -9,10 +9,10 @@ export default class Game {
   }
   run ()
   {
-    this.timer.step()
+    this.timer.update()
     this.update(this.timer.dt)
     this.draw()
-    requestAnimationFrame(this.run.bind(this))
+    requestAnimationFrame(() => this.run())
   }
   update (dt)
   {
@@ -20,6 +20,6 @@ export default class Game {
   }
   draw ()
   {
-    console.log("draw")
+    // console.log("draw")
   }
 }
