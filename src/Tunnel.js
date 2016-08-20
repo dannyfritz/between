@@ -4,6 +4,8 @@ import _ from "lodash"
 export default class Tunnel {
   constructor (vTopLeft, vBottomLeft)
   {
+    this.speed = 5
+    this.vertices = []
     const vTopRight = _.clone(vTopLeft)
     const vBottomRight = _.clone(vBottomLeft)
     const width = 5 + Math.random() * 30
@@ -12,8 +14,19 @@ export default class Tunnel {
     vBottomRight.x += width
     vTopRight.y += verticalOffset
     vBottomRight.y += verticalOffset
+    if (vBottomRight.y > 100)
+    {
+      const offset = vBottomRight.y - 100
+      vBottomRight.y -= offset
+      vTopRight.y -= offset
+    }
+    if (vTopRight.y < 0)
+    {
+      const offset = vTopRight.y
+      vBottomRight.y -= offset
+      vTopRight.y -= offset
+    }
     this.vertices = [vTopLeft, vTopRight, vBottomRight, vBottomLeft]
-    this.speed = 5
   }
   update (dt)
   {
@@ -21,7 +34,8 @@ export default class Tunnel {
   }
   draw (canvas)
   {
-    canvas.polygon(this.vertices)
+    canvas.line(this.vertices[0], this.vertices[1])
+    canvas.line(this.vertices[3], this.vertices[2])
   }
   getTopRight ()
   {

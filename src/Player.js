@@ -14,7 +14,7 @@ export default class Player {
     }
     this.x = x
     this.y = y
-    this.speed = 10
+    this.speed = 30
     this.radius = radius
   }
   update (dt)
@@ -35,6 +35,10 @@ export default class Player {
     {
       this.x += dt * this.speed
     }
+    this.y = Math.max(this.y, 0)
+    this.y = Math.min(this.y, 100)
+    this.x = Math.max(this.x, 0)
+    this.x = Math.min(this.x, 100)
   }
   draw (canvas)
   {

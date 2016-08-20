@@ -115,6 +115,15 @@ export default class Canvas {
     this.context.closePath()
     this.context.stroke()
   }
+  line (v1, v2)
+  {
+    const worldV1 = this.worldVToScreen(v1)
+    const worldV2 = this.worldVToScreen(v2)
+    this.context.beginPath()
+    this.context.moveTo(worldV1.x, worldV1.y)
+    this.context.lineTo(worldV2.x, worldV2.y)
+    this.context.stroke()
+  }
   push ()
   {
     this.context.save()
