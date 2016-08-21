@@ -3,7 +3,7 @@ import Tunnel from "./Tunnel"
 import Pit from "./Pit"
 import _ from "lodash"
 import Menu from "./Menu"
-import fond, { Debug, Graphics } from "../fond"
+import fond, { Debug, Graphics } from "fond"
 const { assert, log } = Debug
 
 export default class Game {

@@ -1,5 +1,5 @@
 import Player from "./Player"
-import fond, { Graphics, Keyboard } from "../fond"
+import fond, { Graphics, Keyboard } from "fond"
 import Game from "./Game"
 import SAT from "SAT"
 

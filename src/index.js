@@ -1,4 +1,4 @@
-import fond from "../fond"
+import fond from "fond"
 import Menu from "./Menu"
 
 //eslint-disable-next-line no-console

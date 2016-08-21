@@ -1,5 +1,5 @@
 import SAT from "sat"
-import { Keyboard, Debug } from "../fond"
+import { Keyboard, Debug } from "fond"
 const { assert } = Debug
 export default class Player {
   constructor (x, y, radius)
