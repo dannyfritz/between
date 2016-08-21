@@ -32,10 +32,10 @@ export default class Tunnel {
   {
     this.vertices.forEach((v) => v.x -= dt * this.speed)
   }
-  draw (canvas)
+  draw (graphics)
   {
-    canvas.line(this.vertices[0], this.vertices[1])
-    canvas.line(this.vertices[3], this.vertices[2])
+    graphics.line(this.vertices[0], this.vertices[1])
+    graphics.line(this.vertices[3], this.vertices[2])
   }
   getTopRight ()
   {

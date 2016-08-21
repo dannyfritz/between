@@ -38,9 +38,9 @@ export default class Player {
     this.v.x = Math.max(this.v.x, 0)
     this.v.x = Math.min(this.v.x, 100)
   }
-  draw (canvas)
+  draw (graphics)
   {
-    canvas.circle(
+    graphics.circle(
       {x: this.v.x, y: this.v.y},
       this.radius
     )

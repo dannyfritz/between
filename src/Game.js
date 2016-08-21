@@ -2,7 +2,8 @@ import Player from "./Player"
 import Tunnel from "./Tunnel"
 import Pit from "./Pit"
 import _ from "lodash"
-import fond, { Debug } from "../fond"
+import Menu from "./Menu"
+import fond, { Debug, Graphics } from "../fond"
 const { assert, log } = Debug
 
 export default class Game {
@@ -13,6 +14,16 @@ export default class Game {
     this.pits = []
     this.cooldown = 5
     this.score = 0
+  }
+  enter ()
+  {
+    this.graphics = new Graphics()
+    this.graphics.addToDom()
+    this.graphics.fitWindow()
+  }
+  leave ()
+  {
+    this.graphics.removeFromDom()
   }
   update (dt)
   {
@@ -52,7 +63,7 @@ export default class Game {
     if (this.isGameLost() && this.cooldown <= 0)
     {
       log("You lost")
-      fond.pop()
+      fond.swap(new Menu())
     }
     _.remove(this.tunnels, (tunnel) => tunnel.getRightSide() < -500)
     _.remove(this.pits, (pit) => pit.getBottomSide() < -500)
@@ -89,21 +100,21 @@ export default class Game {
   {
     return !_.last(this.pits) || _.last(this.pits).getBottomSide() <= 500
   }
-  draw (canvas)
+  draw ()
   {
-    canvas.clear()
-    this.pits.forEach((pit) => pit.draw(canvas))
-    this.tunnels.forEach((tunnel) => tunnel.draw(canvas))
-    this.player.draw(canvas)
+    this.graphics.clear()
+    this.pits.forEach((pit) => pit.draw(this.graphics))
+    this.tunnels.forEach((tunnel) => tunnel.draw(this.graphics))
+    this.player.draw(this.graphics)
     if (this.cooldown > 0)
     {
-      canvas.context.font = "48px serif"
-      canvas.text({x: 10, y: 10}, Math.round(this.cooldown))
+      this.graphics.context.font = "48px serif"
+      this.graphics.text({x: 10, y: 10}, Math.round(this.cooldown))
     }
     else
     {
-      canvas.context.font = "48px serif"
-      canvas.text({x: 10, y: 10}, Math.round(this.score))
+      this.graphics.context.font = "48px serif"
+      this.graphics.text({x: 10, y: 10}, Math.round(this.score))
     }
   }
 }

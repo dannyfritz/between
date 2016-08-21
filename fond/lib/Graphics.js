@@ -1,7 +1,7 @@
 import Debug from "./debug"
 const { assert } = Debug
 
-export default class Canvas {
+export default class Graphics {
   constructor (aspectRatio = 1)
   {
     this.canvas = document.createElement("canvas")

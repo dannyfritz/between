@@ -1,5 +1,5 @@
 import Player from "./Player"
-import fond, { Keyboard } from "../fond"
+import fond, { Graphics, Keyboard } from "../fond"
 import Game from "./Game"
 import SAT from "SAT"
 
@@ -12,13 +12,23 @@ export default class Menu
     this.menuItems = [
       new MenuItem({x: 25, y: 25}, "Play", () =>
       {
-        fond.push(new Game())
+        fond.swap(new Game())
       }),
       new MenuItem({x: 25, y: 75}, "How to Play", () =>
       {
-        fond.push(new Game())
+        fond.swap(new Game())
       }),
     ]
+  }
+  enter ()
+  {
+    this.graphics = new Graphics()
+    this.graphics.addToDom()
+    this.graphics.fitWindow()
+  }
+  leave ()
+  {
+    this.graphics.removeFromDom()
   }
   update (dt)
   {
@@ -45,11 +55,11 @@ export default class Menu
       })
     }
   }
-  draw (canvas)
+  draw ()
   {
-    canvas.clear()
-    this.player.draw(canvas)
-    this.menuItems.forEach((menuItem) => menuItem.draw(canvas))
+    this.graphics.clear()
+    this.player.draw(this.graphics)
+    this.menuItems.forEach((menuItem) => menuItem.draw(this.graphics))
   }
 }
 
@@ -65,17 +75,17 @@ class MenuItem
   {
 
   }
-  draw (canvas)
+  draw (graphics)
   {
-    canvas.push()
-    canvas.context.fillStyle = this.fillColor || "black"
-    canvas.context.strokeStyle = this.fillColor || "black"
-    canvas.context.textBaseline = "hanging"
-    canvas.context.font = "48px serif"
-    canvas.text(this.v, this.text)
+    graphics.push()
+    graphics.context.fillStyle = this.fillColor || "black"
+    graphics.context.strokeStyle = this.fillColor || "black"
+    graphics.context.textBaseline = "hanging"
+    graphics.context.font = "48px serif"
+    graphics.text(this.v, this.text)
     const shape = this.toShape()
-    canvas.polygon(shape.points)
-    canvas.pop()
+    graphics.polygon(shape.points)
+    graphics.pop()
   }
   toShape ()
   {
