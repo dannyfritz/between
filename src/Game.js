@@ -2,8 +2,8 @@ import Player from "./Player"
 import Tunnel from "./Tunnel"
 import Pit from "./Pit"
 import _ from "lodash"
-import { assert, log } from "./debug"
-import { runtime } from "./Runtime"
+import fond, { Debug } from "../fond"
+const { assert, log } = Debug
 
 export default class Game {
   constructor ()
@@ -52,7 +52,7 @@ export default class Game {
     if (this.isGameLost() && this.cooldown <= 0)
     {
       log("You lost")
-      runtime.pop()
+      fond.pop()
     }
     _.remove(this.tunnels, (tunnel) => tunnel.getRightSide() < -500)
     _.remove(this.pits, (pit) => pit.getBottomSide() < -500)

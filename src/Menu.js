@@ -1,8 +1,7 @@
 import Player from "./Player"
-import { runtime } from "./Runtime"
+import fond, { Keyboard } from "../fond"
 import Game from "./Game"
 import SAT from "SAT"
-import Keyboard from "./Keyboard"
 
 export default class Menu
 {
@@ -13,11 +12,11 @@ export default class Menu
     this.menuItems = [
       new MenuItem({x: 25, y: 25}, "Play", () =>
       {
-        runtime.push(new Game())
+        fond.push(new Game())
       }),
       new MenuItem({x: 25, y: 75}, "How to Play", () =>
       {
-        runtime.push(new Game())
+        fond.push(new Game())
       }),
     ]
   }

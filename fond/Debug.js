@@ -1,9 +1,11 @@
 import nodeAssert from "Assert"
 
+const DEBUG = process.env.NODE_ENV === "development"
+
 //eslint-disable-next-line brace-style
-export let assert = () => {}
+let assert = () => {}
 //eslint-disable-next-line brace-style
-export let log = () => {}
+let log = () => {}
 
 if (DEBUG)
 {
@@ -11,3 +13,5 @@ if (DEBUG)
   // eslint-disable-next-line no-console
   log = console.log
 }
+
+export default { assert, log, DEBUG }

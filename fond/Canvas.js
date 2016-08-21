@@ -1,4 +1,5 @@
-import { assert } from "./debug"
+import Debug from "./debug"
+const { assert } = Debug
 
 export default class Canvas {
   constructor (aspectRatio = 1)

@@ -1,4 +1,5 @@
-import { assert } from "./debug"
+import Debug from "./Debug"
+const { assert } = Debug
 
 export default class Timer {
   constructor ()

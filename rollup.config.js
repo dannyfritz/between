@@ -23,8 +23,6 @@ export default {
     json(),
     replace({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-      "DEBUG": JSON.stringify(process.env.NODE_ENV === "development"),
-      "PRODUCTION": JSON.stringify(process.env.NODE_ENV !== "development"),
     }),
   ],
 }
