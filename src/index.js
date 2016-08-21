@@ -1,5 +1,5 @@
 import { runtime } from "./Runtime"
-import Game from "./Game"
+import Menu from "./Menu"
 
-runtime.push(new Game())
+runtime.push(new Menu())
 runtime.run()

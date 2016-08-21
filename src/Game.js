@@ -2,18 +2,29 @@ import Player from "./Player"
 import Tunnel from "./Tunnel"
 import Pit from "./Pit"
 import _ from "lodash"
-import { assert } from "./debug"
+import { assert, log } from "./debug"
+import { runtime } from "./Runtime"
 
 export default class Game {
   constructor ()
   {
-    this.player = new Player(1, 50, 1)
+    this.player = new Player(50, 50, 1)
     this.tunnels = []
     this.pits = []
+    this.cooldown = 5
+    this.score = 0
   }
   update (dt)
   {
     this.player.update(dt)
+    if (this.cooldown > 0)
+    {
+      this.cooldown -= dt
+    }
+    else
+    {
+      this.score += dt * 100
+    }
     while (this.isNeedingMoreTunnels())
     {
       const lastTunnel = _.last(this.tunnels) || new Tunnel(
@@ -38,9 +49,10 @@ export default class Game {
     }
     this.tunnels.forEach((tunnel) => tunnel.update(dt))
     this.pits.forEach((pit) => pit.update(dt))
-    if (this.isGameLost())
+    if (this.isGameLost() && this.cooldown <= 0)
     {
-      console.log("You lost")
+      log("You lost")
+      runtime.pop()
     }
     _.remove(this.tunnels, (tunnel) => tunnel.getRightSide() < -500)
     _.remove(this.pits, (pit) => pit.getBottomSide() < -500)
@@ -83,5 +95,15 @@ export default class Game {
     this.pits.forEach((pit) => pit.draw(canvas))
     this.tunnels.forEach((tunnel) => tunnel.draw(canvas))
     this.player.draw(canvas)
+    if (this.cooldown > 0)
+    {
+      canvas.context.font = "48px serif"
+      canvas.text({x: 10, y: 10}, Math.round(this.cooldown))
+    }
+    else
+    {
+      canvas.context.font = "48px serif"
+      canvas.text({x: 10, y: 10}, Math.round(this.score))
+    }
   }
 }

@@ -9,6 +9,8 @@ export const keyEnum = Object.freeze({
   "s": "KeyS",
   "a": "KeyA",
   "d": "KeyD",
+  " ": "Space",
+  "space": "Space",
 })
 
 export default class Keyboard {
@@ -28,21 +30,13 @@ export default class Keyboard {
   }
   keyDownEvent (event)
   {
-    event.preventDefault()
+    // event.preventDefault()
     this.keyState[event.code] = true
   }
   keyUpEvent (event)
   {
-    event.preventDefault()
+    // event.preventDefault()
     this.keyState[event.code] = false
-  }
-  onKeyPressed (code, callback)
-  {
-
-  }
-  onKeyReleased (key, callback)
-  {
-
   }
   keyToCode (key)
   {

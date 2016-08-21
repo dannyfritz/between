@@ -124,6 +124,15 @@ export default class Canvas {
     this.context.lineTo(worldV2.x, worldV2.y)
     this.context.stroke()
   }
+  text (v, text)
+  {
+    const worldV = this.worldVToScreen(v)
+    this.context.fillText(text, worldV.x, worldV.y)
+  }
+  textBoundingBox (text)
+  {
+    return this.context.measureText(text)
+  }
   push ()
   {
     this.context.save()

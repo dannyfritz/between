@@ -12,8 +12,7 @@ export default class Player {
       left: "left",
       right: "right",
     }
-    this.x = x
-    this.y = y
+    this.v = {x, y}
     this.speed = 30
     this.radius = radius
   }
@@ -21,29 +20,29 @@ export default class Player {
   {
     if (this.keyboard.isKeyDown(this.controls.up))
     {
-      this.y -= dt * this.speed
+      this.v.y -= dt * this.speed
     }
     if (this.keyboard.isKeyDown(this.controls.down))
     {
-      this.y += dt * this.speed
+      this.v.y += dt * this.speed
     }
     if (this.keyboard.isKeyDown(this.controls.left))
     {
-      this.x -= dt * this.speed
+      this.v.x -= dt * this.speed
     }
     if (this.keyboard.isKeyDown(this.controls.right))
     {
-      this.x += dt * this.speed
+      this.v.x += dt * this.speed
     }
-    this.y = Math.max(this.y, 0)
-    this.y = Math.min(this.y, 100)
-    this.x = Math.max(this.x, 0)
-    this.x = Math.min(this.x, 100)
+    this.v.y = Math.max(this.v.y, 0)
+    this.v.y = Math.min(this.v.y, 100)
+    this.v.x = Math.max(this.v.x, 0)
+    this.v.x = Math.min(this.v.x, 100)
   }
   draw (canvas)
   {
     canvas.circle(
-      {x: this.x, y: this.y},
+      {x: this.v.x, y: this.v.y},
       this.radius
     )
   }
@@ -66,6 +65,6 @@ export default class Player {
   }
   toShape ()
   {
-    return new SAT.Circle(new SAT.Vector(this.x, this.y), this.radius)
+    return new SAT.Circle(new SAT.Vector(this.v.x, this.v.y), this.radius)
   }
 }
