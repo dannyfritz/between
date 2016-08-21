@@ -13,6 +13,10 @@ export default class Canvas {
   {
     targetDomElement.appendChild(this.canvas)
   }
+  removeFromDom ()
+  {
+    this.canvas.remove()
+  }
   fitWindow ()
   {
     this.canvas.style.display = "block"

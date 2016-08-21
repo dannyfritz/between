@@ -1,6 +1,5 @@
 import Timer from "./Timer"
 import Canvas from "./Canvas"
-import _ from "lodash"
 import newMoody from "moody"
 
 export default class Runtime {
@@ -20,9 +19,9 @@ export default class Runtime {
     this.canvas.letterBox()
     requestAnimationFrame(() => this.run())
   }
-  push (newState)
+  push (newState, ...args)
   {
-    this.moody.push(newState, _.tail(arguments))
+    this.moody.push(newState, args)
   }
   pop ()
   {

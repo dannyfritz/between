@@ -22,21 +22,26 @@ export default class Keyboard {
     {
       this.keyState[keyEnum[key]] = false
     }
+    this.keyDownEvent = this.keyDownEvent.bind(this)
+    this.keyUpEvent = this.keyUpEvent.bind(this)
     this.addEvents()
   }
   addEvents ()
   {
-    document.addEventListener("keydown", this.keyDownEvent.bind(this))
-    document.addEventListener("keyup", this.keyUpEvent.bind(this))
+    document.addEventListener("keydown", this.keyDownEvent)
+    document.addEventListener("keyup", this.keyUpEvent)
+  }
+  removeEvent ()
+  {
+    document.removeEventListener("keydown", this.keyDownEvent)
+    document.removeEventListener("keyup", this.keyUpEvent)
   }
   keyDownEvent (event)
   {
-    // event.preventDefault()
     this.keyState[event.code] = true
   }
   keyUpEvent (event)
   {
-    // event.preventDefault()
     this.keyState[event.code] = false
   }
   keyToCode (key)
