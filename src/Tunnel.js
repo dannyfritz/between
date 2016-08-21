@@ -8,8 +8,8 @@ export default class Tunnel {
     this.vertices = []
     const vTopRight = _.clone(vTopLeft)
     const vBottomRight = _.clone(vBottomLeft)
-    const width = 5 + Math.random() * 30
-    const verticalOffset = Math.random() * 30 - 15
+    const width = 3 + Math.random() * 35
+    const verticalOffset = Math.random() * 40 - 20
     vTopRight.x += width
     vBottomRight.x += width
     vTopRight.y += verticalOffset

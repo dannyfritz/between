@@ -4,12 +4,12 @@ import _ from "lodash"
 export default class Tunnel {
   constructor (vTopLeft, vTopRight)
   {
-    this.speed = 5
+    this.speed = 7
     this.vertices = []
     const vBottomLeft = _.clone(vTopLeft)
     const vBottomRight = _.clone(vTopRight)
-    const height = 5 + Math.random() * 30
-    const horizontalOffset = Math.random() * 30 - 15
+    const height = 3 + Math.random() * 35
+    const horizontalOffset = Math.random() * 40 - 20
     vBottomLeft.y += height
     vBottomRight.y += height
     vBottomLeft.x += horizontalOffset
