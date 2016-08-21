@@ -103,6 +103,7 @@ export default class Game {
   draw ()
   {
     this.graphics.clear()
+    this.graphics.letterBox()
     this.pits.forEach((pit) => pit.draw(this.graphics))
     this.tunnels.forEach((tunnel) => tunnel.draw(this.graphics))
     this.player.draw(this.graphics)
