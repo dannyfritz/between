@@ -3,7 +3,7 @@ import Tunnel from "./Tunnel"
 import Pit from "./Pit"
 import _ from "lodash"
 import Menu from "./Menu"
-import fond, { Debug, Graphics } from "fond"
+import fond, { Audio, Debug, Graphics } from "fond"
 const { assert, log } = Debug
 
 export default class Game {
@@ -14,16 +14,22 @@ export default class Game {
     this.pits = []
     this.cooldown = 5
     this.score = 0
+    this.audio = new Audio()
   }
   enter ()
   {
     this.graphics = new Graphics()
     this.graphics.addToDom()
     this.graphics.fitWindow()
+    this.music = this.audio.newSource(
+      "./assets/01_Another_World_The_Other_Side_LukHash.mp3"
+    )
+    this.music.currentTime = 15
   }
   leave ()
   {
     this.graphics.removeFromDom()
+    this.music.pause()
   }
   update (dt)
   {
