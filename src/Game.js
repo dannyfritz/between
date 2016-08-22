@@ -110,7 +110,7 @@ export default class Game {
     if (this.cooldown > 0)
     {
       this.graphics.context.font = "48px serif"
-      this.graphics.text({x: 10, y: 10}, Math.round(this.cooldown))
+      this.graphics.text({x: 10, y: 10}, Math.ceil(this.cooldown))
     }
     else
     {
