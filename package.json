@@ -4,14 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "eslint src/*.js",
     "build": "rollup --config --environment NODE_ENV:production --sourcemap",
     "dev": "rollup --config --environment NODE_ENV:development --sourcemap --watch"
   },
   "author": "",
   "license": "MIT",
+  "dependencies": {
+    "fond": "^1.0.0",
+    "lodash": "^4.15.0",
+    "sat": "^0.5.0"
+  },
   "devDependencies": {
     "eslint": "^3.3.1",
-    "lodash": "^4.15.0",
     "rollup": "^0.34.10",
     "rollup-plugin-commonjs": "^3.3.1",
     "rollup-plugin-eslint": "^2.0.2",
@@ -21,7 +26,6 @@
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-sourcemaps": "^0.3.6",
-    "rollup-watch": "^2.5.0",
-    "sat": "^0.5.0"
+    "rollup-watch": "^2.5.0"
   }
 }
