@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint src/*.js",
-    "build": "rollup --config --environment NODE_ENV:production --sourcemap",
-    "dev": "rollup --config --environment NODE_ENV:development --sourcemap --watch"
+    "build": "fond-build between",
+    "dev": "fond-build between --development --watch"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "fond-audio": "^1.0.0",
-    "fond-debug": "^1.0.0",
+    "fond-debug": "^1.0.2",
     "fond-graphics": "^1.0.0",
     "fond-keyboard": "^1.0.0",
     "fond-runtime": "^1.0.0",
@@ -22,15 +22,6 @@
   },
   "devDependencies": {
     "eslint": "^3.3.1",
-    "rollup": "^0.34.10",
-    "rollup-plugin-commonjs": "^3.3.1",
-    "rollup-plugin-eslint": "^2.0.2",
-    "rollup-plugin-json": "^2.0.1",
-    "rollup-plugin-node-builtins": "^1.0.7",
-    "rollup-plugin-node-globals": "^1.0.6",
-    "rollup-plugin-node-resolve": "^2.0.0",
-    "rollup-plugin-replace": "^1.1.1",
-    "rollup-plugin-sourcemaps": "^0.3.6",
-    "rollup-watch": "^2.5.0"
+    "fond-build": "^1.1.0"
   }
 }
