@@ -3,7 +3,10 @@ import Tunnel from "./Tunnel"
 import Pit from "./Pit"
 import _ from "lodash"
 import Menu from "./Menu"
-import fond, { Audio, Debug, Graphics } from "fond"
+import Audio from "fond-audio"
+import Debug from "fond-debug"
+import Graphics from "fond-graphics"
+import runtime from "./runtime"
 const { assert, log } = Debug
 
 export default class Game {
@@ -69,7 +72,7 @@ export default class Game {
     if (this.isGameLost() && this.cooldown <= 0)
     {
       log("You lost")
-      fond.swap(new Menu())
+      runtime.swap(new Menu())
     }
     _.remove(this.tunnels, (tunnel) => tunnel.getRightSide() < -500)
     _.remove(this.pits, (pit) => pit.getBottomSide() < -500)

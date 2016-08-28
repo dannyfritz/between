@@ -1,5 +1,7 @@
 import Player from "./Player"
-import fond, { Graphics, Keyboard } from "fond"
+import Graphics from "fond-graphics"
+import Keyboard from "fond-keyboard"
+import runtime from "./runtime"
 import Game from "./Game"
 import SAT from "SAT"
 
@@ -12,11 +14,11 @@ export default class Menu
     this.menuItems = [
       new MenuItem({x: 25, y: 25}, "Play", () =>
       {
-        fond.swap(new Game())
+        runtime.swap(new Game())
       }),
       new MenuItem({x: 25, y: 75}, "How to Play", () =>
       {
-        fond.swap(new Game())
+        runtime.swap(new Game())
       }),
     ]
   }

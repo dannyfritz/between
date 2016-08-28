@@ -11,7 +11,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "fond": "^1.0.0",
+    "fond-audio": "^1.0.0",
+    "fond-debug": "^1.0.0",
+    "fond-graphics": "^1.0.0",
+    "fond-keyboard": "^1.0.0",
+    "fond-runtime": "^1.0.0",
+    "fond-timer": "^1.0.0",
     "lodash": "^4.15.0",
     "sat": "^0.5.0"
   },
