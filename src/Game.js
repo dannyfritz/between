@@ -3,9 +3,8 @@ import Tunnel from "./Tunnel"
 import Pit from "./Pit"
 import _ from "lodash"
 import Menu from "./Menu"
-import Audio from "fond-audio"
-import Debug from "fond-debug"
-import Graphics from "fond-graphics"
+import fond from "fond"
+const { Audio, Debug, Graphics } = fond
 import runtime from "./runtime"
 const { assert, log } = Debug
 

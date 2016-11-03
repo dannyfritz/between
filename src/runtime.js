@@ -1,3 +1,4 @@
-import Runtime from "fond-runtime"
+import fond from "fond"
+const { Runtime } = fond
 
 export default new Runtime()

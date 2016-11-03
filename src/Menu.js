@@ -1,6 +1,6 @@
 import Player from "./Player"
-import Graphics from "fond-graphics"
-import Keyboard from "fond-keyboard"
+import fond from "fond"
+const { Graphics, Keyboard } = fond
 import runtime from "./runtime"
 import Game from "./Game"
 import SAT from "SAT"
@@ -46,7 +46,7 @@ export default class Menu
         menuItem.fillColor = "black"
       }
     })
-    if (this.keyboard.isKeyDown("space"))
+    if (this.keyboard.isKeyDown(" "))
     {
       this.menuItems.forEach((menuItem) =>
       {

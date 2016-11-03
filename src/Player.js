@@ -1,16 +1,16 @@
 import SAT from "sat"
-import Keyboard from "fond-keyboard"
-import Debug from "fond-debug"
+import fond from "fond"
+const { Keyboard, Debug } = fond
 const { assert } = Debug
 export default class Player {
   constructor (x, y, radius)
   {
     this.keyboard = new Keyboard()
     this.controls = {
-      up: "up",
-      down: "down",
-      left: "left",
-      right: "right",
+      up: "ArrowUp",
+      down: "ArrowDown",
+      left: "ArrowLeft",
+      right: "ArrowRight",
     }
     this.v = {x, y}
     this.speed = 30

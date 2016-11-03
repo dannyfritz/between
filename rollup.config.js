@@ -9,7 +9,7 @@ import replace from "rollup-plugin-replace"
 
 export default {
   entry: "src/index.js",
-  dest: "dist/bundle.js",
+  dest: "dist/between.js",
   format: "iife",
   moduleName: "between",
   sourceMap: true,
