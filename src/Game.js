@@ -114,7 +114,17 @@ export default class Game {
     this.graphics.letterBox()
     this.pits.forEach((pit) => pit.draw(this.graphics))
     this.tunnels.forEach((tunnel) => tunnel.draw(this.graphics))
+    this.graphics.push()
+    if (this.isGameLost())
+    {
+      this.graphics.context.strokeStyle = "#ff0000"
+    }
+    else
+    {
+      this.graphics.context.strokeStyle = "#00ff00"
+    }
     this.player.draw(this.graphics)
+    this.graphics.pop()
     if (this.cooldown > 0)
     {
       this.graphics.context.font = "48px serif"

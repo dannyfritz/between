@@ -3,6 +3,7 @@ import fond from "fond"
 const { Graphics, Keyboard } = fond
 import runtime from "./runtime"
 import Game from "./Game"
+import HowToPlay from "./HowToPlay"
 import SAT from "SAT"
 
 export default class Menu
@@ -18,7 +19,7 @@ export default class Menu
       }),
       new MenuItem({x: 25, y: 75}, "How to Play", () =>
       {
-        runtime.swap(new Game())
+        runtime.swap(new HowToPlay())
       }),
     ]
   }
@@ -60,6 +61,8 @@ export default class Menu
   draw ()
   {
     this.graphics.clear()
+    this.graphics.context.font = "20px serif"
+    this.graphics.text({x: 10, y: 10}, "Arrow keys and spacebar.")
     this.player.draw(this.graphics)
     this.menuItems.forEach((menuItem) => menuItem.draw(this.graphics))
   }
